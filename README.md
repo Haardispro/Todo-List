@@ -16,7 +16,7 @@ Pre-requisites:
 
 - Tkinter
 
-Run this program after installing the dependancies.
+Run this program after installing the dependencies.
 
 First, clone this repo:
 
