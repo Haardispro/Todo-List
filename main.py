@@ -1,6 +1,6 @@
 from tkinter import *
 from tkinter import messagebox
-import keyboard
+
 
 w = Tk()
 w.title("Todo list")
@@ -32,17 +32,16 @@ lb = Listbox(
     highlightthickness=0,
     selectbackground='#a6a6a6',
     activestyle="none",
-    borderwidth=5
+    borderwidth=2
     )   
 
 scrollbar = Scrollbar(w, orient="vertical")
 scrollbar.config(command=lb.yview)
-scrollbar.grid(row=1, column=1, sticky='ns')
 lb.config(yscrollcommand=scrollbar.set)
 
-entry = Entry(w, width=25, font=("Cascadia Code", 18), borderwidth=5)
-add_button = Button(w, text="Add Task", width=10, font=("Cascadia Code", 18), borderwidth=5, command=add_task, bg="green", fg="white")
-delete_button = Button(w, text="Delete Task", font=("Cascadia Code", 18), borderwidth=5, command=delete_task, bg="red", fg="white")
+entry = Entry(w, width=25, font=("Cascadia Code", 18), borderwidth=2)
+add_button = Button(w, text="Add Task", width=10, font=("Cascadia Code", 18), borderwidth=2, command=add_task, bg="green", fg="white")
+delete_button = Button(w, text="Delete Task", font=("Cascadia Code", 18), borderwidth=2, command=delete_task, bg="red", fg="white")
 
 
 #positions
@@ -51,6 +50,7 @@ lb.grid(row=1, column=0, padx=10, pady=10)
 entry.grid(row=2, column=0, padx=10, pady=10)
 add_button.grid(row=3, column=0, padx=10, pady=10)
 delete_button.grid(row=4, column=0, padx=10, pady=10)
+scrollbar.grid(row=1, column=1, sticky='ns')
 
 
 w.mainloop()
