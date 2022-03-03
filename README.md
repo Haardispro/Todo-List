@@ -27,11 +27,19 @@ git clone https://github.com/Haardispro/Todo-List
 Second, change the directory and run the program:
 
 ```bash
-cd Todo-List && python3 main.py
+cd Todo-List
 ```
 
+First todo list:
 
+```bash
+python main.py
+```
+
+Second todo list:
+
+```bash
+python todo.py
+```
 
 Please contribute. 
-
-
