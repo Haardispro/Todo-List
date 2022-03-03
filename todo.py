@@ -46,8 +46,6 @@ sb = Scrollbar(
     orient="vertical"
     )
 
-sb.grid(row=0, column=1, sticky=NS)
-
 listbox.config(yscrollcommand=sb.set)
 sb.config(command=listbox.yview)
 
@@ -65,5 +63,6 @@ enter_lab.grid(row=3, column=0, padx=20, pady=10)
 enter.grid(row=4, column=0, padx=20, pady=10)
 add.grid(row=5, column=0, padx=20, pady=10)
 remove.grid(row=6, column=0, padx=20, pady=10)
+sb.grid(row=2, column=1, sticky="ns")
 
 w.mainloop()
