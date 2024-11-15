@@ -6,7 +6,7 @@ Current Status:
 
 - [x] Basic UI
 
-- [ ] Saving the state of the todo list after the application is closed.
+- [ ] Adding Database
 
 ## How to run this program?
 
@@ -30,16 +30,9 @@ Second, change the directory and run the program:
 cd Todo-List
 ```
 
-First todo list:
-
+Run the program: 
 ```bash
-python main.py
-```
-
-Second todo list:
-
-```bash
-python todo.py
+python3 main.py
 ```
 
 Please contribute. 

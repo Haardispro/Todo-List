@@ -1,56 +1,68 @@
 from tkinter import *
-from tkinter import messagebox
-
 
 w = Tk()
-w.title("Todo list")
+w.title("Todo List")
+w.configure(bg="#1e1e1e")
 w.resizable(height=False, width=False)
-w.config(bg="#282828")
+#w.geometry("500x200")
+#Fonts
+#Heading font
+f1 = ('Cascadia Code', 25, 'bold')
+f2 = ('Cascadia Code', 15, 'bold')
+#Functions
 
-#commands
-def add_task():
-    task = entry.get()
-    if task != "":
-        lb.insert(END, task)
-        entry.delete(0, END)
 
+
+def add():
+    w = enter.get()
+    enter.delete(0, END)
+    if (w == ""):
+        x = Tk()
+        x.title("Warning")
+        x.configure(bg="red")
+        x.resizable(height=False, width=False)
+        Label(x, text="No task entered!", font=f1, fg="white", bg="red") .grid(row=0, column=0, padx=20, pady=20)
     else:
-        messagebox.showwarning("warning", "Please enter some task.")
 
-def delete_task():
-    lb.delete(ANCHOR)
+        listbox.insert(END, "- " + w)
 
+def remove():
+    listbox.delete(ACTIVE)
 
-heading = Label(w, text="Todo List", font=("Cascadia Code", 18), fg="white", bg="#282828")
-lb = Listbox(
+#Heading
+head = Label(w, text="Todo List", font=f1, bg="#1e1e1e", fg="white")
+#Listbox
+list_head = Label(w, text="Your Tasks:", font=f2, fg="white", bg="#1e1e1e")
+listbox = Listbox(w, height = 10,
+                  width = 25,
+                  bg = "white",
+                  activestyle = 'dotbox',
+                  font = f1,
+                  fg = "#1e1e1e")
+
+#scrollbar
+sb = Scrollbar(
     w,
-    width=25,
-    height=8,
-    font=('Cascadia Code', 18),
-    bd=0,
-    fg='#464646',
-    highlightthickness=0,
-    selectbackground='#a6a6a6',
-    activestyle="none",
-    borderwidth=2
-    )   
+    orient="vertical"
+    )
 
-scrollbar = Scrollbar(w, orient="vertical")
-scrollbar.config(command=lb.yview)
-lb.config(yscrollcommand=scrollbar.set)
+listbox.config(yscrollcommand=sb.set)
+sb.config(command=listbox.yview)
 
-entry = Entry(w, width=25, font=("Cascadia Code", 18), borderwidth=2)
-add_button = Button(w, text="Add Task", width=10, font=("Cascadia Code", 18), borderwidth=2, command=add_task, bg="green", fg="white")
-delete_button = Button(w, text="Delete Task", font=("Cascadia Code", 18), borderwidth=2, command=delete_task, bg="red", fg="white")
+#Button and Entry
+remove = Button(w, text="Remove task", font=f1, command=remove)
+add = Button(w, text="Add task", font=f1, command=add)
+enter_lab = Label(w, text="Enter a task:", font=f2, fg="white", bg="#1e1e1e")
+enter = Entry(w, width=25, fg="#1e1e1e", bg="white", font=f1)
 
-
-#positions
-heading.grid(row=0, column=0, padx=10, pady=10)
-lb.grid(row=1, column=0, padx=10, pady=10)
-entry.grid(row=2, column=0, padx=10, pady=10)
-add_button.grid(row=3, column=0, padx=10, pady=10)
-delete_button.grid(row=4, column=0, padx=10, pady=10)
-scrollbar.grid(row=1, column=1, sticky='ns')
-
+#Positions
+head.grid(row=0, column=0, padx=20, pady=10)
+list_head.grid(row=1, column=0, padx=20, pady=10)
+listbox.grid(row=2, column=0, padx=20, pady=10)
+enter_lab.grid(row=3, column=0, padx=20, pady=10)
+enter.grid(row=4, column=0, padx=20, pady=10)
+add.grid(row=5, column=0, padx=20, pady=10)
+remove.grid(row=6, column=0, padx=20, pady=10)
+sb.grid(row=2, column=1, sticky="ns")
 
 w.mainloop()
