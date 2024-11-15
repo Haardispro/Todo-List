@@ -4,7 +4,7 @@ This is a simple todo list made in python.
 
 ## How to run this program?
 
-##### Modules used: 
+#### Modules used: 
 - Tkinter
 - SQLite3 
 
