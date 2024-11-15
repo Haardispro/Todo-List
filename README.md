@@ -2,12 +2,6 @@
 
 This is a simple todo list made in python. 
 
-Current Status: 
-
-- [x] Basic UI
-
-- [ ] Adding Database
-
 ## How to run this program?
 
 ##### Modules used: 
