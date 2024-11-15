@@ -10,17 +10,14 @@ Current Status:
 
 ## How to run this program?
 
-Pre-requisites: 
-
-- Python 3
-
+##### Modules used: 
 - Tkinter
+- SQLite3 
 
-Run this program after installing the dependencies.
-
-
-**To run the program:** 
-
+Install Modules: 
+```bash
+pip install tkinter sqlite3
+```
 Clone the repo:
 ```bash
 git clone https://github.com/Haardispro/Todo-List
