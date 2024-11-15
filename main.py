@@ -1,36 +1,68 @@
 from tkinter import *
+import sqlite3
 
 w = Tk()
 w.title("Todo List")
 w.configure(bg="#1e1e1e")
 w.resizable(height=False, width=False)
-#w.geometry("500x200")
+
 #Fonts
 #Heading font
 f1 = ('Agave', 25, 'bold')
 f2 = ('Agave', 15, 'bold')
 
-#Functions
+# Warning
+def warning():
+    x = Tk()
+    x.title("Warning")
+    x.configure(bg="red")
+    x.resizable(height=False, width=False)
+    Label(x, text="No task entered!", font=f1, fg="white", bg="red") .grid(row=0, column=0, padx=20, pady=20)
+ 
+
+#Button Functions
 def add():
     w = enter.get()
     enter.delete(0, END)
+    con = sqlite3.connect("todo.db")
+    cur = con.cursor()
     if (w == ""):
-        x = Tk()
-        x.title("Warning")
-        x.configure(bg="red")
-        x.resizable(height=False, width=False)
-        Label(x, text="No task entered!", font=f1, fg="white", bg="red") .grid(row=0, column=0, padx=20, pady=20)
+        warning()
     else:
-
         listbox.insert(END, "- " + w)
+        try:
+            cur.execute("CREATE TABLE todo(Task text)")
+            cur.execute("INSERT INTO todo VALUES (?)", (w,))
+        except sqlite3.OperationalError:
+            cur.execute("INSERT INTO todo VALUES (?)", (w,))
+    con.commit()
+    con.close()
 
-def remove():
+def remove(): 
+    selected = listbox.get(ACTIVE)
+    x = selected[2:len(selected)]
+    con = sqlite3.connect("todo.db")
+    cur = con.cursor()
+    try:
+        cur.execute("DELETE FROM todo WHERE Task = (?)", (x,))
+    except sqlite3.OperationalError:
+        warning()
+    con.commit()
+    con.close()
     listbox.delete(ACTIVE)
 
 def show():
-    return  
-
-
+    listbox.delete(0, END)     
+    con = sqlite3.connect("todo.db")
+    cur = con.cursor()
+    try:
+        for row in cur.execute("SELECT * FROM todo"):
+            listbox.insert(END, "- " + row[0])
+    except sqlite3.OperationalError:
+        warning()
+    con.commit()
+    con.close()
+    
 #Heading
 head = Label(w, text="Todo List", font=f1, bg="#1e1e1e", fg="white")
 #Listbox
@@ -43,10 +75,7 @@ listbox = Listbox(w, height = 10,
                   fg = "#1e1e1e")
 
 #scrollbar
-sb = Scrollbar(
-    w,
-    orient="vertical"
-    )
+sb = Scrollbar(w,orient="vertical")
 
 listbox.config(yscrollcommand=sb.set)
 sb.config(command=listbox.yview)
