@@ -18,21 +18,18 @@ Pre-requisites:
 
 Run this program after installing the dependencies.
 
-First, clone this repo:
 
+**To run the program:** 
+
+Clone the repo:
 ```bash
 git clone https://github.com/Haardispro/Todo-List
 ```
-
-Second, change the directory and run the program:
-
+Change the directory:
 ```bash
 cd Todo-List
 ```
-
 Run the program: 
 ```bash
 python3 main.py
 ```
-
-Please contribute. 
